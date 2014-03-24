@@ -233,16 +233,73 @@ public class Modificar_estudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_s_nombreActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        estudiante.setApellido(this.s_apellido.getText());
-        estudiante.setNombre(this.s_nombre.getText());
-        estudiante.setDireccion(this.s_direccion.getText());
-        estudiante.setEstado(this.s_estado.getText());
-        estudiante.setCelular(this.s_telefono.getText());
-        estudiante.setEmail(this.s_email.getText());
+        Boolean cumple = false;
+        Boolean salida = false;
+        
+        while(!cumple){ 
+          estudiante.setApellido(this.s_apellido.getText());
+          estudiante.setNombre(this.s_nombre.getText());
+          estudiante.setDireccion(this.s_direccion.getText());
+          estudiante.setEstado(this.s_estado.getText());
+          estudiante.setCelular(this.s_telefono.getText());
+          estudiante.setEmail(this.s_email.getText());
+        
+          if (estudiante.getNombre().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el nombre del estudiante");
+             notificacion.setVisible(true);
+          }
+          
+          if (estudiante.getApellido().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el apellido de estudiante");
+             notificacion.setVisible(true);
+          }
+          
+          if (estudiante.getDireccion().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion del estudiante");
+             notificacion.setVisible(true);
+          }
+          
+          if (estudiante.getEmail().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion de correo electronico del estudiante");
+             notificacion.setVisible(true);
+          }
+          
+          if (estudiante.getEstado().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el estado actual del estudiante en el sistema beta");
+             notificacion.setVisible(true);
+          }
+          
+          if (estudiante.getEstado().equalsIgnoreCase("ACTIVO")){
+              estudiante.setEstado("ACTIVO");
+          } else {
+              if (estudiante.getEstado().equalsIgnoreCase("INACTIVO")){
+                  estudiante.setEstado("INACTIVO");
+              } else { 
+                     Notificacion notificacion = new Notificacion(this,true, "Limitese a los estados ACTIVO/INACTIVO");
+                     notificacion.setVisible(true);
+              }
+          }
+          
+          if (estudiante.getCelular().isEmpty()){
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el numero de celular asociado al estudiante");
+             notificacion.setVisible(true);
+          } else {
+            
+            salida = true;
+          }
+          
+          if (salida) {
         estudiante.modificarEstudiante();
-        Window ventana = new Window();
-        ventana.setVisible(true);            
-        this.setVisible(false);
+                Notificacion notificacion = new Notificacion(this,true, "Se logró modificar al estudiante");
+                notificacion.setVisible(true);
+                break;
+
+           } else {
+                Notificacion notificacion = new Notificacion(this,true, "Intentelo nuevamente");
+                notificacion.setVisible(true);
+           }
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

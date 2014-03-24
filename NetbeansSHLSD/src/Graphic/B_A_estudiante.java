@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -93,12 +94,13 @@ public class B_A_estudiante {
         return "B_A_estudiante{" + "nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", email=" + email + ", estado=" + estado + ", celular=" + celular + ", carnet=" + carnet + "}'";
     }
     
-    public void registrarEstudiante(){
+    public Boolean registrarEstudiante(){
+        Boolean meta = false;
         try (Connection conn = Conexion.obtenerConn()) {
             Statement st;
             st = conn.createStatement();
             
-            st.execute("INSERT INTO ESTUDIANTE values ('" + this.getNombre() + "', '"
+            meta = st.execute("INSERT INTO ESTUDIANTE values ('" + this.getNombre() + "', '"
                     + this.getApellido() + "', '" + this.getCarnet() + "', '" 
                     + this.getDireccion() + "', '" + this.getEmail() + "', '" 
                     + this.getEstado() + "', '" + this.getCelular() + "');");
@@ -107,6 +109,7 @@ public class B_A_estudiante {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+        return meta;
     }
     
     public static B_A_estudiante consultarEstudiante(String carnet){
@@ -140,6 +143,13 @@ public class B_A_estudiante {
               System.err.println(ex.getMessage());
           }
         
+    }
+    
+    public static Boolean validaCarnet(String carnet) {
+        String patron = "[0-9][0-9]-[0-9][0-9][0-9][0-9][0-9]";
+        Pattern comp = Pattern.compile(patron);
+        
+        return carnet.matches(patron);
     }
 
          

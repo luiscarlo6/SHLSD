@@ -5,6 +5,7 @@
  */
 
 package Graphic;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -204,22 +205,43 @@ public class Agregar_horas extends javax.swing.JFrame {
     }//GEN-LAST:event_f_finActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        Hora inicioH = new Hora(this.f_inicio.getText().trim());
-        Hora finH = new Hora(this.f_fin.getText().trim());
-        Hora resultado = Hora.diferencia(inicioH, finH);
+        Boolean cumple = false;
+        Hora resultado = null;
+        Hora inicioH = null;
+        Hora finH = null;
+        
+        while (!cumple){
+            inicioH = new Hora(this.f_inicio.getText().trim());
+            finH = new Hora(this.f_fin.getText().trim());
+            resultado = Hora.diferencia(inicioH, finH);
+        
+            if (!(Hora.validarFormato(this.f_inicio.getText().trim()) && Hora.validarFormato(this.f_fin.getText().trim()))){
+                 Notificacion notificacion = new Notificacion(this,true, "Ingrese el formato de hora valido, XX:XX");
+                 notificacion.setVisible(true);
+            }
+            if (!(inicioH.esValida() && finH.esValida())){
+                 Notificacion notificacion = new Notificacion(this,true, "Ingrese horas en formato militar, validas");
+                 notificacion.setVisible(true);
+            }
+        
+           String carnet =f_carnet.getText().toString();
+            if (!B_A_estudiante.validaCarnet(carnet)) {
+                Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
+                notificacion.setVisible(true);
+          }
+        
+            if (!Hora.validarFormatoFecha(f_fecha.getText())) {
+                Notificacion notificacion = new Notificacion(this,true,"Ingrese una fecha en el formato XX-XX-XXXX");
+                notificacion.setVisible(true);
+          } else {
+                cumple = true;
+                break;
+          }
+        
+        }
        
         B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());//calculo de tiemo total donde va el cero   
-        Boolean cumple = true;
-        if (cumple) {
-            labor.registrarLabor();
-            Exito exito = new Exito();
-            exito.setVisible(true);
-            this.setVisible(false);
-        } else {
-            Fallo fallo = new Fallo();
-            fallo.setVisible(true);
-            this.setVisible(false);
-        }        
+        labor.registrarLabor();
         
     }//GEN-LAST:event_agregarActionPerformed
 

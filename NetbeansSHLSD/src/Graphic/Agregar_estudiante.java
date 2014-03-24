@@ -28,6 +28,17 @@ public class Agregar_estudiante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
+        jDialog3 = new javax.swing.JDialog();
+        jDialog4 = new javax.swing.JDialog();
+        jDialog5 = new javax.swing.JDialog();
+        jDialog6 = new javax.swing.JDialog();
+        jDialog7 = new javax.swing.JDialog();
+        jDialog8 = new javax.swing.JDialog();
+        jFrame1 = new javax.swing.JFrame();
+        jFrame2 = new javax.swing.JFrame();
+        jFrame3 = new javax.swing.JFrame();
         jButton1 = new javax.swing.JButton();
         carnet = new javax.swing.JLabel();
         nombres = new javax.swing.JLabel();
@@ -47,6 +58,127 @@ public class Agregar_estudiante extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog3Layout = new javax.swing.GroupLayout(jDialog3.getContentPane());
+        jDialog3.getContentPane().setLayout(jDialog3Layout);
+        jDialog3Layout.setHorizontalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog3Layout.setVerticalGroup(
+            jDialog3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog4Layout = new javax.swing.GroupLayout(jDialog4.getContentPane());
+        jDialog4.getContentPane().setLayout(jDialog4Layout);
+        jDialog4Layout.setHorizontalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog4Layout.setVerticalGroup(
+            jDialog4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog5Layout = new javax.swing.GroupLayout(jDialog5.getContentPane());
+        jDialog5.getContentPane().setLayout(jDialog5Layout);
+        jDialog5Layout.setHorizontalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog5Layout.setVerticalGroup(
+            jDialog5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog6Layout = new javax.swing.GroupLayout(jDialog6.getContentPane());
+        jDialog6.getContentPane().setLayout(jDialog6Layout);
+        jDialog6Layout.setHorizontalGroup(
+            jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog6Layout.setVerticalGroup(
+            jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog7Layout = new javax.swing.GroupLayout(jDialog7.getContentPane());
+        jDialog7.getContentPane().setLayout(jDialog7Layout);
+        jDialog7Layout.setHorizontalGroup(
+            jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog7Layout.setVerticalGroup(
+            jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog8Layout = new javax.swing.GroupLayout(jDialog8.getContentPane());
+        jDialog8.getContentPane().setLayout(jDialog8Layout);
+        jDialog8Layout.setHorizontalGroup(
+            jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog8Layout.setVerticalGroup(
+            jDialog8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame2Layout = new javax.swing.GroupLayout(jFrame2.getContentPane());
+        jFrame2.getContentPane().setLayout(jFrame2Layout);
+        jFrame2Layout.setHorizontalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame2Layout.setVerticalGroup(
+            jFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
+        jFrame3.getContentPane().setLayout(jFrame3Layout);
+        jFrame3Layout.setHorizontalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame3Layout.setVerticalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,27 +341,35 @@ public class Agregar_estudiante extends javax.swing.JFrame {
           estudiante = new B_A_estudiante(f_nombres.getText(),f_apellidos.getText(),(f_carnet.getText()),f_direccion.getText(),f_email.getText(),f_estado.getText(),f_telefono.getText());
         
           if (estudiante.getNombre().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el nombre del estudiante");
+             notificacion.setVisible(true);
           }
           
           if (estudiante.getApellido().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el apellido de estudiante");
+             notificacion.setVisible(true);
           }
           
-        //  if (estudiante.getCarnet()()){
-              
-         // }
+          String carnet= estudiante.getCarnet().toString();
+          if (!B_A_estudiante.validaCarnet(carnet)) {
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese un carnet valido");
+             notificacion.setVisible(true);
+          }    
+          
           
           if (estudiante.getDireccion().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion del estudiante");
+             notificacion.setVisible(true);
           }
           
           if (estudiante.getEmail().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion de correo electronico del estudiante");
+             notificacion.setVisible(true);
           }
           
           if (estudiante.getEstado().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el estado actual del estudiante en el sistema beta");
+             notificacion.setVisible(true);
           }
           
           if (estudiante.getEstado().equalsIgnoreCase("ACTIVO")){
@@ -238,28 +378,28 @@ public class Agregar_estudiante extends javax.swing.JFrame {
               if (estudiante.getEstado().equalsIgnoreCase("INACTIVO")){
                   estudiante.setEstado("INACTIVO");
               } else { 
-              
+                     Notificacion notificacion = new Notificacion(this,true, "Limitese a los estados ACTIVO/INACTIVO");
+                     notificacion.setVisible(true);
               }
           }
           
           if (estudiante.getCelular().isEmpty()){
-              
+             Notificacion notificacion = new Notificacion(this,true, "Ingrese el numero de celular asociado al estudiante");
+             notificacion.setVisible(true);
           } else {
+            
             salida = true;
           }
           
           if (salida) {
                 estudiante.registrarEstudiante();
-                Exito exito = new Exito();
-                exito.setVisible(true);
-                this.setVisible(false);
-                cumple = true;
+                Notificacion notificacion = new Notificacion(this,true, "Se logró registrar al estudiante");
+                notificacion.setVisible(true);
                 break;
 
            } else {
-                Fallo fallo = new Fallo();
-                fallo.setVisible(true);
-                this.setVisible(false);
+                Notificacion notificacion = new Notificacion(this,true, "Intentelo nuevamente");
+                notificacion.setVisible(true);
            }
         }
         
@@ -318,6 +458,17 @@ public class Agregar_estudiante extends javax.swing.JFrame {
     private javax.swing.JTextField f_telefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JDialog jDialog3;
+    private javax.swing.JDialog jDialog4;
+    private javax.swing.JDialog jDialog5;
+    private javax.swing.JDialog jDialog6;
+    private javax.swing.JDialog jDialog7;
+    private javax.swing.JDialog jDialog8;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JFrame jFrame2;
+    private javax.swing.JFrame jFrame3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

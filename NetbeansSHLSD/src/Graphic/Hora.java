@@ -6,6 +6,8 @@
 
 package Graphic;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author johndelgado
@@ -99,7 +101,19 @@ class Hora {
         return  inicio.hora < fin.hora ? 1 :0;
     }
     
-    public Boolean esValida(Hora hora){
-        return (hora.hora < 24 && hora.hora > 0 && hora.minutos < 60 && hora.minutos > 0);
+    public Boolean esValida(){
+        return (this.hora < 24 && this.hora > 0 && this.minutos < 60 && this.minutos > 0);
+    }
+    
+    public static Boolean validarFormato(String formato) {
+        String patron = "[0-9][0-9]:[0-9][0-9]";
+        Pattern comp = Pattern.compile(patron);
+        return formato.matches(patron);
+    }
+    
+    public static Boolean validarFormatoFecha(String formato) {
+        String patron = "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
+        Pattern comp = Pattern.compile(patron);
+        return formato.matches(patron);
     }
 }

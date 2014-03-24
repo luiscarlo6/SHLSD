@@ -163,17 +163,12 @@ public class B_A_horas {
             total = total + labores.get(iterador).getTiempo_total();
             horas = Integer.parseInt(total.toString().subSequence(0, total.toString().indexOf(".")).toString());
             minutos = Integer.parseInt(total.toString().subSequence(total.toString().indexOf(".")+1, total.toString().indexOf(".") + 3).toString());
-            System.out.println("h"+horas);
-            System.out.println("m"+minutos);
 
             if (minutos > 59){
-                            System.out.println("Soy estupido");
-
                 minutos = minutos - 60;
                 auxiliar = Double.parseDouble("0."+ minutos.toString());
                 total = total  + auxiliar;
             }
-                        System.out.println("total"+total);
 
         }   
         return total.toString();

@@ -143,21 +143,40 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void datosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosActionPerformed
-        Consulta_datos ventana = new Consulta_datos(B_A_estudiante.consultarEstudiante((f_carne.getText().toString())));
-        ventana.setVisible(true);            
-        this.setVisible(false);  
+        String carnet =f_carne.getText().toString();
+        if (B_A_estudiante.validaCarnet(carnet)) {
+            Consulta_datos ventana = new Consulta_datos(B_A_estudiante.consultarEstudiante(carnet));
+            ventana.setVisible(true);            
+            this.setVisible(false); 
+        } else {
+            Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
+            notificacion.setVisible(true);
+        }
     }//GEN-LAST:event_datosActionPerformed
 
     private void acumuladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acumuladoActionPerformed
-        Consulta_total ventana = new Consulta_total(B_A_estudiante.consultarEstudiante((f_carne.getText().toString())));
-        ventana.setVisible(true);            
-        this.setVisible(false);        
+        String carnet =f_carne.getText().toString();
+        if (B_A_estudiante.validaCarnet(carnet)) {
+            Consulta_total ventana = new Consulta_total(B_A_estudiante.consultarEstudiante(carnet));
+            ventana.setVisible(true);            
+            this.setVisible(false); 
+        } else {
+            Notificacion notificacion = new Notificacion(this,true, "Ingrese un carnet valido");
+            notificacion.setVisible(true);
+        }     
     }//GEN-LAST:event_acumuladoActionPerformed
 
     private void acreditacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acreditacionesActionPerformed
-        Consulta_acreditaciones ventana = new Consulta_acreditaciones(B_A_estudiante.consultarEstudiante((f_carne.getText().toString())));
-        ventana.setVisible(true);            
-        this.setVisible(false);        
+        String carnet =f_carne.getText().toString();
+        if (B_A_estudiante.validaCarnet(carnet)) {
+            Consulta_acreditaciones ventana = new Consulta_acreditaciones(B_A_estudiante.consultarEstudiante(carnet));
+            ventana.setVisible(true);            
+            this.setVisible(false); 
+        } else {
+            Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
+            notificacion.setVisible(true);
+        }
+           
     }//GEN-LAST:event_acreditacionesActionPerformed
 
     /**
