@@ -14,36 +14,36 @@ import java.sql.Statement;
 
 
 public class Conexion {
-    
-    private static String url = "jdbc:postgresql://localhost:5432/SHLSD";
-    private static String user = "johndelgado";
-    private static String pass = "admin";
-    
-    /* Obtiene la conexion a la base de datos */
-    
-    public static Connection obtenerConn(){
-        
-        try{        
-            Class.forName("org.postgresql.Driver");
-            
-        } catch (ClassNotFoundException e){
-        
-            System.out.println("El driver JDBC no esta instalado.");
-            return null;
-        }
-                
-        Connection conexion;
-        
-        try{             
-            conexion = DriverManager.getConnection(url, user, pass);
-            
-        } catch (SQLException e){
-            
-            System.out.println("No se pudo conectar a la base de datos.");
-            return null;   
-        }
-       
-        return conexion;        
-    } 
-    
+
+  private static String url = "jdbc:postgresql://localhost:5432/SHLSD";
+  private static String user = "johndelgado";
+  private static String pass = "admin";
+
+  /* Obtiene la conexion a la base de datos */
+
+  public static Connection obtenerConn(){
+
+    try{        
+      Class.forName("org.postgresql.Driver");
+
+    } catch (ClassNotFoundException e){
+
+      System.out.println("El driver JDBC no esta instalado.");
+      return null;
+    }
+
+    Connection conexion;
+
+    try{             
+      conexion = DriverManager.getConnection(url, user, pass);
+
+    } catch (SQLException e){
+
+      System.out.println("No se pudo conectar a la base de datos.");
+      return null;   
+    }
+
+    return conexion;        
+  } 
+
 }

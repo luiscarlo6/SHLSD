@@ -120,11 +120,16 @@ public class Modificar_front extends javax.swing.JFrame {
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         String carnet =f_carne.getText().toString();
-        if (B_A_estudiante.validaCarnet(carnet)) {
-            Modificar_estudiante ventana = new Modificar_estudiante(B_A_estudiante.consultarEstudiante(carnet));
-            ventana.setVisible(true);            
-            this.setVisible(false); 
-        } else {
+        if (B_A_estudiante.validaCarnet(carnet)) 
+            if (null != B_A_estudiante.consultarEstudiante(carnet)){
+                Modificar_estudiante ventana = new Modificar_estudiante(B_A_estudiante.consultarEstudiante(carnet));
+                ventana.setVisible(true);            
+                this.setVisible(false); 
+            } else {
+                 Notificacion notificacion = new Notificacion(this,true, "Ese estudiante no existe");
+                 notificacion.setVisible(true);
+            }
+         else {
             Notificacion notificacion = new Notificacion(this,true, "Ingrese un carnet valido");
             notificacion.setVisible(true);
         }    

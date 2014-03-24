@@ -62,18 +62,18 @@ public class Agregar_horas extends javax.swing.JFrame {
 
         f_inicio.setText("");
 
-        f_fin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_finActionPerformed(evt);
-            }
-        });
+        //f_fin.addActionListener(new java.awt.event.ActionListener() {
+        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //        f_finActionPerformed(evt);
+        //    }
+        //});
 
         agregar.setText("Agregar");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
-            }
-        });
+        //agregar.addActionListener(new java.awt.event.ActionListener() {
+        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //        agregarActionPerformed(evt);
+        //    }
+        //});
 
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,11 +85,11 @@ public class Agregar_horas extends javax.swing.JFrame {
         fin1.setText("Observaciones");
 
         f_obs.setText("Ninguna observación");
-        f_obs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                f_obsActionPerformed(evt);
-            }
-        });
+        //f_obs.addActionListener(new java.awt.event.ActionListener() {
+        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        //        f_obsActionPerformed(evt);
+        //    }
+        //});
 
         jLabel1.setText("Atención, las horas deben estar en formato militar!");
 
@@ -200,10 +200,7 @@ public class Agregar_horas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void f_finActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_finActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_finActionPerformed
-
+    //Se agrega un estudiante al presionar el boton agregar
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Boolean cumple = false;
         Hora resultado = null;
@@ -214,17 +211,13 @@ public class Agregar_horas extends javax.swing.JFrame {
             inicioH = new Hora(this.f_inicio.getText().trim());
             finH = new Hora(this.f_fin.getText().trim());
             resultado = Hora.diferencia(inicioH, finH);
-        
+            // a partir de aqui son verificaciones de los campos de los formularios
             if (!(Hora.validarFormato(this.f_inicio.getText().trim()) && Hora.validarFormato(this.f_fin.getText().trim()))){
                  Notificacion notificacion = new Notificacion(this,true, "Ingrese el formato de hora valido, XX:XX");
                  notificacion.setVisible(true);
             }
-            if (!(inicioH.esValida() && finH.esValida())){
-                 Notificacion notificacion = new Notificacion(this,true, "Ingrese horas en formato militar, validas");
-                 notificacion.setVisible(true);
-            }
-        
-           String carnet =f_carnet.getText().toString();
+            
+           String carnet = f_carnet.getText().toString();
             if (!B_A_estudiante.validaCarnet(carnet)) {
                 Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
                 notificacion.setVisible(true);
@@ -236,58 +229,67 @@ public class Agregar_horas extends javax.swing.JFrame {
           } else {
                 cumple = true;
                 break;
+          }      
+          if (null != B_A_estudiante.consultarEstudiante(carnet)){
+                Consulta_acreditaciones ventana = new Consulta_acreditaciones(B_A_estudiante.consultarEstudiante(carnet));
+                ventana.setVisible(true);
+                this.setVisible(false);
+          } else {
+                 Notificacion notificacion = new Notificacion(this,true, "Ese estudiante no existe");
+                 notificacion.setVisible(true);
           }
-        
         }
-       
-        B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());//calculo de tiemo total donde va el cero   
-        labor.registrarLabor();
-        
-    }//GEN-LAST:event_agregarActionPerformed
-
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        //Se registran las horas en la base de datos
+        B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());
+        Boolean exito = labor.registrarLabor();
+        Notificacion notificacion = new Notificacion(this,true,"Se inserto correctamente la información");
+        notificacion.setVisible(true);
         Window ventana = new Window();
         ventana.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_regresarActionPerformed
+        
+    }//GEN-LAST:event_agregarActionPerformed
 
-    private void f_obsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f_obsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_f_obsActionPerformed
+    //accion del boton regresar
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+      Window ventana = new Window();
+      ventana.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_regresarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      /* Set the Nimbus look and feel */
+      //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+      /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+       * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+       */
+      try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+          if ("Nimbus".equals(info.getName())) {
+            javax.swing.UIManager.setLookAndFeel(info.getClassName());
+            break;
+          }
         }
-        //</editor-fold>
+      } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(Agregar_horas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      }
+      //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Agregar_horas().setVisible(true);
-            }
-        });
+      /* Create and display the form */
+      java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+          new Agregar_horas().setVisible(true);
+        }
+      });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,107 +13,117 @@ import java.util.regex.Pattern;
  * @author johndelgado
  */
 class Hora {
-    String cadena;
-    Integer hora;
-    Integer minutos;
+  String cadena;
+  Integer hora;
+  Integer minutos;
 
-    public Hora(String cadena, Integer hora, Integer minutos) {
-        this.cadena = cadena;
-        this.hora = hora;
-        this.minutos = minutos;
-    }
-    
-    public Hora(String cadena){
-        String literal1 = cadena.substring(0, 2);
-        String literal2 = cadena.substring(3, 5);
-        if (cadena.contains(":")){
-            this.cadena = cadena;
-            this.hora = Integer.parseInt(literal1);
-            this.minutos = Integer.parseInt(literal2);
-        }
+  //contructor de la clase
+  public Hora(String cadena, Integer hora, Integer minutos) {
+    this.cadena = cadena;
+    this.hora = hora;
+    this.minutos = minutos;
+  }
 
-    }
-    
-    public Hora(Integer hora, Integer minutos) {
-        this.cadena = "Hora calculada";
-        this.hora = hora;
-        this.minutos = minutos;
-    }
-    
-    public static Hora diferencia(Hora inicio, Hora fin){
-        Integer totalHoras = 0;
-        Integer totalMinutos = 0;
-        
-        if (fin.minutos >= inicio.minutos ){
-            totalHoras = fin.hora - inicio.hora;
-            totalMinutos = fin.minutos - inicio.minutos;
-        }
-        
-        if (fin.minutos < inicio.minutos ){
-            if (fin.hora == inicio.hora + 1){
-                totalHoras = 0;
-            }else{
-                totalHoras = fin.hora - inicio.hora - 1;
-            }
-            totalMinutos = (60 - inicio.minutos) + fin.minutos;
-        }
-        
-        Hora resultado = new Hora(totalHoras,totalMinutos);
-        
-        return resultado;
+  //constructor de la clase
+  public Hora(String cadena){
+    String literal1 = cadena.substring(0, cadena.indexOf(":"));
+    String literal2 = cadena.substring(cadena.indexOf(":")+1, cadena.length());
+    System.out.println(literal1);
+    System.out.println(literal2);
+    if (cadena.contains(":")){
+      this.cadena = cadena;
+      this.hora = Integer.parseInt(literal1);
+      this.minutos = Integer.parseInt(literal2);
     }
 
-    public String getCadena() {
-        return cadena;
+  }
+
+  //constructor de la clase
+  public Hora(Integer hora, Integer minutos) {
+    this.cadena = "Hora calculada";
+    this.hora = hora;
+    this.minutos = minutos;
+  }
+
+  //metodo para calcular la diferencia entre dos horas
+  public static Hora diferencia(Hora inicio, Hora fin){
+    Integer totalHoras = 0;
+    Integer totalMinutos = 0;
+
+    if (fin.minutos >= inicio.minutos ){
+      totalHoras = fin.hora - inicio.hora;
+      totalMinutos = fin.minutos - inicio.minutos;
     }
 
-    public void setCadena(String cadena) {
-        this.cadena = cadena;
+    if (fin.minutos < inicio.minutos ){
+      if (fin.hora == inicio.hora + 1){
+        totalHoras = 0;
+      }else{
+        totalHoras = fin.hora - inicio.hora - 1;
+      }
+      totalMinutos = (60 - inicio.minutos) + fin.minutos;
     }
 
-    public Integer getHora() {
-        return hora;
-    }
+    Hora resultado = new Hora(totalHoras,totalMinutos);
 
-    public void setHora(Integer hora) {
-        this.hora = hora;
-    }
+    return resultado;
+  }
 
-    public Integer getMinutos() {
-        return minutos;
-    }
+  //getters & setters
+  public String getCadena() {
+    return cadena;
+  }
 
-    public void setMinutos(Integer minutos) {
-        this.minutos = minutos;
-    }
+  public void setCadena(String cadena) {
+    this.cadena = cadena;
+  }
 
-    @Override
+  public Integer getHora() {
+    return hora;
+  }
+
+  public void setHora(Integer hora) {
+    this.hora = hora;
+  }
+
+  public Integer getMinutos() {
+    return minutos;
+  }
+
+  public void setMinutos(Integer minutos) {
+    this.minutos = minutos;
+  }
+
+  @Override
+    //metodo para convertir una hora en string
     public String toString() {
-        return "Hora{" + "cadena=" + cadena + ", hora=" + hora + ", minutos=" + minutos + '}';
+      return cadena;
     }
-    
-    public Double toDouble() {
-        Double resultado = this.hora + ((this.minutos) /100.0);
-        return resultado;
-    }
-    
-    public Integer esMayor(Hora inicio, Hora fin){        
-        return  inicio.hora < fin.hora ? 1 :0;
-    }
-    
-    public Boolean esValida(){
-        return (this.hora < 24 && this.hora > 0 && this.minutos < 60 && this.minutos > 0);
-    }
-    
-    public static Boolean validarFormato(String formato) {
-        String patron = "[0-9][0-9]:[0-9][0-9]";
-        Pattern comp = Pattern.compile(patron);
-        return formato.matches(patron);
-    }
-    
-    public static Boolean validarFormatoFecha(String formato) {
-        String patron = "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
-        Pattern comp = Pattern.compile(patron);
-        return formato.matches(patron);
-    }
+
+  //metodo para convertir una hora a Double
+  public Double toDouble() {
+    Double resultado = this.hora + ((this.minutos) /100.0);
+    return resultado;
+  }
+
+  //metodo para ver si una hora es mayor a otra
+  public Integer esMayor(Hora inicio, Hora fin){        
+    return  inicio.hora < fin.hora ? 1 :0;
+  }
+
+  //metodo para validar el formato de una hora
+  public static Boolean validarFormato(String formato) {
+    String patron = "[0-9][0-9]:[0-9][0-9]";
+    String patron2 = "[0-9]:[0-9][0-9]";
+    return formato.matches(patron)||formato.matches(patron2);
+  }
+
+  //metodo para validar el formato de una fecha
+  public static Boolean validarFormatoFecha(String formato) {
+    String patron1 = "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
+    String patron2 = "[0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
+    String patron3 = "[0-9][0-9]-[0-9]-[0-9][0-9][0-9][0-9]";
+    String patron4 = "[0-9]-[0-9]-[0-9][0-9][0-9][0-9]";
+    return formato.matches(patron1) || formato.matches(patron2) || formato.matches(patron3) || formato.matches(patron4);
+  }
 }
