@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite modificar un estudiante.
  * @author johndelgado
  */
 public class Modificar_estudiante extends javax.swing.JFrame {

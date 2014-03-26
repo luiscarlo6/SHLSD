@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite consultar datos
  * @author johndelgado
  */
 public class Consulta_datos extends javax.swing.JFrame {

@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite agregar un estudiante.
  * @author johndelgado
  */
 public class Agregar_estudiante extends javax.swing.JFrame {
@@ -333,38 +333,45 @@ public class Agregar_estudiante extends javax.swing.JFrame {
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     Boolean cumple = false;
     Boolean salida = false;
+    Boolean malo = false;
     while(!cumple){
       B_A_estudiante estudiante;
       estudiante = new B_A_estudiante(f_nombres.getText(),f_apellidos.getText(),(f_carnet.getText()),f_direccion.getText(),f_email.getText(),f_estado.getText(),f_telefono.getText());
       //Verificaciones de obligatoriedad
       //Campo nombre
-      if (estudiante.getNombre().isEmpty()){
+      if (estudiante.getNombre().isEmpty() && !malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese el nombre del estudiante");
         notificacion.setVisible(true);
       }
       //Campo apellido
-      if (estudiante.getApellido().isEmpty()){
+      if (estudiante.getApellido().isEmpty() && !malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese el apellido de estudiante");
         notificacion.setVisible(true);
       }
       //Campo carnet
       String carnet= estudiante.getCarnet().toString();
-      if (!B_A_estudiante.validaCarnet(carnet)) {
+      if (!B_A_estudiante.validaCarnet(carnet) && !malo) {
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese un carnet valido");
         notificacion.setVisible(true);
       }
       //Campo direccion
-      if (estudiante.getDireccion().isEmpty()){
+      if (estudiante.getDireccion().isEmpty()&& !malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion del estudiante");
         notificacion.setVisible(true);
       }
       //Campo email
-      if (estudiante.getEmail().isEmpty()){
+      if (estudiante.getEmail().isEmpty() && !malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese una direccion de correo electronico del estudiante");
         notificacion.setVisible(true);
       }
       //Campo estado
-      if (estudiante.getEstado().isEmpty()){
+      if (estudiante.getEstado().isEmpty() && !malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese el estado actual del estudiante en el sistema beta");
         notificacion.setVisible(true);
       }
@@ -374,36 +381,41 @@ public class Agregar_estudiante extends javax.swing.JFrame {
         if (estudiante.getEstado().equalsIgnoreCase("INACTIVO")){
           estudiante.setEstado("INACTIVO");
         } else { 
+          malo = true;
           Notificacion notificacion = new Notificacion(this,true, "Limitese a los estados ACTIVO/INACTIVO");
           notificacion.setVisible(true);
         }
       }
       //Campo celular 
-      if (estudiante.getCelular().isEmpty()){
+      if (estudiante.getCelular().isEmpty() && malo){
+        malo = true;
         Notificacion notificacion = new Notificacion(this,true, "Ingrese el numero de celular asociado al estudiante");
         notificacion.setVisible(true);
-      } else {
+      } if(!malo) {
         salida = true;
       }
       //si se cumplen los requerimientos se puede agregar al estudiante, si no entonces no se agrega y se notifica
-      //FIXME
+      
+
       if (salida) {
-       // if (estudiante.registrarEstudiante()){
+        if (estudiante.registrarEstudiante()){
           Notificacion notificacion = new Notificacion(this,true, "Se logró registrar al estudiante");
           Window ventana = new Window();
           ventana.setVisible(true);
           this.setVisible(false);
           notificacion.setVisible(true);
           break;
-       // } else {
-       //   Notificacion notificacion = new Notificacion(this,true, "El estudiante ya existe");
-       //   notificacion.setVisible(true);
-       // }
+        } else {
+          Notificacion notificacion = new Notificacion(this,true, "El estudiante ya existe");
+          notificacion.setVisible(true);
+        }
 
       } else {
         Notificacion notificacion = new Notificacion(this,true, "Intentelo nuevamente");
         notificacion.setVisible(true);
       }
+      break;
+
     }
 
   }//GEN-LAST:event_jButton3ActionPerformed

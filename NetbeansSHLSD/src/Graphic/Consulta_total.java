@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite consultal el total de horas
  * @author johndelgado
  */
 public class Consulta_total extends javax.swing.JFrame {

@@ -17,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 /**
- *
+ * Jform principal.
  * @author johndelgado
  */
 public class Window extends javax.swing.JFrame {

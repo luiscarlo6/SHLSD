@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite modificar el front.
  * @author johndelgado
  */
 public class Modificar_front extends javax.swing.JFrame {

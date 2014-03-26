@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite consultar acreditaciones
  * @author johndelgado
  */
 public class Consulta_acreditaciones extends javax.swing.JFrame {

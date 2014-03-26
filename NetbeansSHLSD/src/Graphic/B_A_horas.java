@@ -14,7 +14,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 
 /**
- *
+ * Clase horas
  * @author johndelgado
  */
 public class B_A_horas {
@@ -101,7 +101,7 @@ public class B_A_horas {
           + this.getObservaciones() + "', '" 
           + this.getFecha() + "', '" + this.getCarnet()+ "', '" 
           + this.getTiempo_total()+"');");
-
+      st.close();
       conn.close();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());

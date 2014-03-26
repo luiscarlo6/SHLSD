@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite notificar.
  * @author johndelgado
  */
 public class Notificacion extends javax.swing.JDialog {

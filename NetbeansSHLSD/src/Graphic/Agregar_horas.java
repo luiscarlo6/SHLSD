@@ -8,7 +8,7 @@ package Graphic;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Jform que permite agregar horas
  * @author johndelgado
  */
 public class Agregar_horas extends javax.swing.JFrame {
@@ -62,18 +62,12 @@ public class Agregar_horas extends javax.swing.JFrame {
 
         f_inicio.setText("");
 
-        //f_fin.addActionListener(new java.awt.event.ActionListener() {
-        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        //        f_finActionPerformed(evt);
-        //    }
-        //});
-
         agregar.setText("Agregar");
-        //agregar.addActionListener(new java.awt.event.ActionListener() {
-        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        //        agregarActionPerformed(evt);
-        //    }
-        //});
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,16 +78,9 @@ public class Agregar_horas extends javax.swing.JFrame {
 
         fin1.setText("Observaciones");
 
-        f_obs.setText("Ninguna observación");
-        //f_obs.addActionListener(new java.awt.event.ActionListener() {
-        //    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        //        f_obsActionPerformed(evt);
-        //    }
-        //});
-
         jLabel1.setText("Atención, las horas deben estar en formato militar!");
 
-        jLabel2.setText("12-12-1234");
+        jLabel2.setText("MM-DD-AAAA");
 
         jLabel3.setText("12-34567");
 
@@ -118,7 +105,7 @@ public class Agregar_horas extends javax.swing.JFrame {
                             .addComponent(Fecha)
                             .addComponent(fin1)
                             .addComponent(agregar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(f_fecha)
                             .addComponent(f_inicio)
@@ -206,7 +193,8 @@ public class Agregar_horas extends javax.swing.JFrame {
         Hora resultado = null;
         Hora inicioH = null;
         Hora finH = null;
-        
+
+        // Se piden los datos hasta que los cumpla
         while (!cumple){
             inicioH = new Hora(this.f_inicio.getText().trim());
             finH = new Hora(this.f_fin.getText().trim());
@@ -239,6 +227,7 @@ public class Agregar_horas extends javax.swing.JFrame {
                  notificacion.setVisible(true);
           }
         }
+
         //Se registran las horas en la base de datos
         B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());
         Boolean exito = labor.registrarLabor();

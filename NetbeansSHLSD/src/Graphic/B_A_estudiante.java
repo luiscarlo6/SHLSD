@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Clase estudiante
  * @author johndelgado
  */
 public class B_A_estudiante {
@@ -103,13 +103,14 @@ public class B_A_estudiante {
     try (Connection conn = Conexion.obtenerConn()) {
       Statement st;
       st = conn.createStatement();
-
-      meta = st.execute("INSERT INTO ESTUDIANTE values ('" + this.getNombre() + "', '"
+          st.execute("INSERT INTO ESTUDIANTE values ('" + this.getNombre() + "', '"
           + this.getApellido() + "', '" + this.getCarnet() + "', '" 
           + this.getDireccion() + "', '" + this.getEmail() + "', '" 
           + this.getEstado() + "', '" + this.getCelular() + "');");
-
+ 
+      meta = B_A_estudiante.consultarEstudiante(this.getCarnet()).carnet.equalsIgnoreCase(this.getCarnet());
       conn.close();
+      st.close();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }
@@ -122,13 +123,13 @@ public class B_A_estudiante {
     try (Connection conn = Conexion.obtenerConn()) {
       Statement st;
       st = conn.createStatement();
-      if (!st.execute("SELECT * FROM ESTUDIANTE WHERE CARNET = '" + carnet + "';")) {
-        return null;
-      }
+      
       ResultSet rs = st.executeQuery("SELECT * FROM ESTUDIANTE WHERE CARNET = '" + carnet + "';");
       rs.next();
+      
       estudiante = new B_A_estudiante(rs.getString(1),rs.getString(2),(rs.getString(3)),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
       conn.close();
+      rs.close();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }
@@ -148,6 +149,8 @@ public class B_A_estudiante {
           "', direccion ='"+this.direccion+
           "', estado ='"+this.estado+"'"
           + " WHERE carnet ='"+this.carnet+"';");
+      st.close();
+      conn.close();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }

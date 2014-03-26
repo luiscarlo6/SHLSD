@@ -9,7 +9,7 @@ package Graphic;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Clase Hora.
  * @author johndelgado
  */
 class Hora {

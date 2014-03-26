@@ -7,7 +7,7 @@
 package Graphic;
 
 /**
- *
+ * Jform que permite hacer consultas.
  * @author johndelgado
  */
 public class Consultas extends javax.swing.JFrame {
