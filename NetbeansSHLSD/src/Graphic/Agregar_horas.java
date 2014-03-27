@@ -78,6 +78,8 @@ public class Agregar_horas extends javax.swing.JFrame {
 
         fin1.setText("Observaciones");
 
+        f_obs.setText("Ninguna Observacion");
+
         jLabel1.setText("Atención, las horas deben estar en formato militar!");
 
         jLabel2.setText("MM-DD-AAAA");
@@ -95,38 +97,54 @@ public class Agregar_horas extends javax.swing.JFrame {
         ObsLayout.setHorizontalGroup(
             ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ObsLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ObsLayout.createSequentialGroup()
-                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Carnet)
-                            .addComponent(fin)
-                            .addComponent(inicio)
-                            .addComponent(Fecha)
-                            .addComponent(fin1)
-                            .addComponent(agregar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(f_fecha)
-                            .addComponent(f_inicio)
-                            .addComponent(f_fin)
-                            .addComponent(f_carnet)
-                            .addComponent(f_obs))
-                        .addGap(18, 18, 18)
-                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(249, 249, 249))
-                    .addGroup(ObsLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(regresar)
-                        .addGap(14, 14, 14))))
-            .addGroup(ObsLayout.createSequentialGroup()
                 .addComponent(jLabel6)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(ObsLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ObsLayout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ObsLayout.createSequentialGroup()
+                                .addComponent(f_carnet, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3))
+                            .addGroup(ObsLayout.createSequentialGroup()
+                                .addComponent(f_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)))
+                        .addGap(316, 316, 316))
+                    .addGroup(ObsLayout.createSequentialGroup()
+                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ObsLayout.createSequentialGroup()
+                                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fin1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(ObsLayout.createSequentialGroup()
+                                        .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(Carnet)
+                                            .addComponent(inicio)
+                                            .addComponent(Fecha)
+                                            .addComponent(fin))
+                                        .addGap(4, 4, 4)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(f_obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ObsLayout.createSequentialGroup()
+                                        .addComponent(f_fin, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel5))
+                                    .addGroup(ObsLayout.createSequentialGroup()
+                                        .addComponent(f_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel4))))
+                            .addComponent(jLabel1))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ObsLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(regresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agregar)
+                .addGap(246, 246, 246))
         );
         ObsLayout.setVerticalGroup(
             ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,43 +163,39 @@ public class Agregar_horas extends javax.swing.JFrame {
                         .addComponent(f_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
                 .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(inicio)
-                    .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(f_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(f_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(fin))
+                    .addComponent(f_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fin1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(f_obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(agregar)
-                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ObsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ObsLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                        .addComponent(regresar)
-                        .addGap(16, 16, 16))))
+                    .addComponent(f_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fin)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(f_obs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fin1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ObsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar)
+                    .addComponent(regresar))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Obs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Obs, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Obs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Obs, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -190,52 +204,62 @@ public class Agregar_horas extends javax.swing.JFrame {
     //Se agrega un estudiante al presionar el boton agregar
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Boolean cumple = false;
+        Boolean existe = false;
         Hora resultado = null;
         Hora inicioH = null;
         Hora finH = null;
-
-        // Se piden los datos hasta que los cumpla
-        while (!cumple){
+        // a partir de aqui son verificaciones de los campos de los formularios
+        if (null == this.f_inicio)  
+        
+        if (!(Hora.validarFormato(this.f_inicio.getText().trim()) && Hora.validarFormato(this.f_fin.getText().trim()))){
+                 Notificacion notificacion = new Notificacion(this,true, "Ingrese el formato de hora valido, XX:XX");
+                 notificacion.setVisible(true);
+        }
+            
+        String carnet = f_carnet.getText().toString();
+        if (!B_A_estudiante.validaCarnet(carnet)) {
+                 Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
+                 notificacion.setVisible(true);
+        }
+        
+        if (!Hora.validarFormatoFecha(f_fecha.getText())) {
+                Notificacion notificacion = new Notificacion(this,true,"Ingrese una fecha en el formato XX-XX-XXXX");
+                notificacion.setVisible(true);
+        } 
+            
+        if (null != B_A_estudiante.consultarEstudiante(carnet)){
+                existe = true; 
+        } else {
+                 Notificacion notificacion = new Notificacion(this,true, "Ese estudiante no existe");
+                 notificacion.setVisible(true);
+        }
+        
+        if ((0 != this.f_inicio.getText().length()) && (0 != this.f_fin.getText().length())){
             inicioH = new Hora(this.f_inicio.getText().trim());
             finH = new Hora(this.f_fin.getText().trim());
             resultado = Hora.diferencia(inicioH, finH);
-            // a partir de aqui son verificaciones de los campos de los formularios
-            if (!(Hora.validarFormato(this.f_inicio.getText().trim()) && Hora.validarFormato(this.f_fin.getText().trim()))){
-                 Notificacion notificacion = new Notificacion(this,true, "Ingrese el formato de hora valido, XX:XX");
-                 notificacion.setVisible(true);
+            if (!Hora.esMayor(inicioH, finH)){
+               cumple = cumple & false;
+               Notificacion notificacion = new Notificacion(this,true,"La hora de fin no debe ser menor que la hora de inicio");
+               notificacion.setVisible(true);            
+            } else {
+                cumple = existe;
             }
-            
-           String carnet = f_carnet.getText().toString();
-            if (!B_A_estudiante.validaCarnet(carnet)) {
-                Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
-                notificacion.setVisible(true);
-          }
-        
-            if (!Hora.validarFormatoFecha(f_fecha.getText())) {
-                Notificacion notificacion = new Notificacion(this,true,"Ingrese una fecha en el formato XX-XX-XXXX");
-                notificacion.setVisible(true);
-          } else {
-                cumple = true;
-                break;
-          }      
-          if (null != B_A_estudiante.consultarEstudiante(carnet)){
-                Consulta_acreditaciones ventana = new Consulta_acreditaciones(B_A_estudiante.consultarEstudiante(carnet));
-                ventana.setVisible(true);
-                this.setVisible(false);
-          } else {
-                 Notificacion notificacion = new Notificacion(this,true, "Ese estudiante no existe");
-                 notificacion.setVisible(true);
-          }
         }
-
+        
+        if (cumple) {
         //Se registran las horas en la base de datos
-        B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());
-        Boolean exito = labor.registrarLabor();
-        Notificacion notificacion = new Notificacion(this,true,"Se inserto correctamente la información");
-        notificacion.setVisible(true);
-        Window ventana = new Window();
-        ventana.setVisible(true);
-        this.setVisible(false);
+             B_A_horas labor = new B_A_horas((this.f_carnet.getText()), finH, inicioH, this.f_fecha.getText(), this.f_obs.getText() ,resultado.toDouble());
+             Boolean exito = labor.registrarLabor();
+             Notificacion notificacion = new Notificacion(this,true,"Se inserto correctamente la información");
+             notificacion.setVisible(true);
+             Window ventana = new Window();
+             ventana.setVisible(true);
+             this.setVisible(false);
+        } else  {
+             Notificacion notificacion = new Notificacion(this,true,"Llene todos los campos e intente de nuevo");
+             notificacion.setVisible(true);
+        }
         
     }//GEN-LAST:event_agregarActionPerformed
 

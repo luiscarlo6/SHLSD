@@ -107,8 +107,8 @@ class Hora {
   }
 
   //metodo para ver si una hora es mayor a otra
-  public Integer esMayor(Hora inicio, Hora fin){        
-    return  inicio.hora < fin.hora ? 1 :0;
+  public static Boolean esMayor(Hora inicio, Hora fin){        
+    return  inicio.hora < fin.hora ? true :false;
   }
 
   //metodo para validar el formato de una hora
@@ -120,10 +120,19 @@ class Hora {
 
   //metodo para validar el formato de una fecha
   public static Boolean validarFormatoFecha(String formato) {
-    String patron1 = "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
-    String patron2 = "[0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]";
-    String patron3 = "[0-9][0-9]-[0-9]-[0-9][0-9][0-9][0-9]";
-    String patron4 = "[0-9]-[0-9]-[0-9][0-9][0-9][0-9]";
-    return formato.matches(patron1) || formato.matches(patron2) || formato.matches(patron3) || formato.matches(patron4);
+    Boolean valida = true;
+    String patron1 = "0[1-9]-[0-2][0-9]-[0-9][0-9][0-9][0-9]";
+    String patron2 = "1[0-2]-[0-2][0-9]-[0-9][0-9][0-9][0-9]";
+    valida = formato.matches(patron1) || formato.matches(patron2) || valida;
+    patron1 = "0[1-9]-31-[0-9][0-9][0-9][0-9]";
+    patron2 = "1[0-2]-31-[0-9][0-9][0-9][0-9]";
+    valida = formato.matches(patron1) || formato.matches(patron2) || valida;
+    patron1 = "[1-9]-[1-9]-[0-9][0-9][0-9][0-9]";
+    patron2 = "1[0-2]-[1-9]-[0-9][0-9][0-9][0-9]";
+    valida = formato.matches(patron1) || formato.matches(patron2) || valida;
+    patron1 = "[1-9]-31-[1-9][0-9][0-9]";
+    patron2 = "1[0-2]-31-[1-9][0-9][0-9]";
+    valida = formato.matches(patron1) || formato.matches(patron2) || valida;
+    return  valida;
   }
 }

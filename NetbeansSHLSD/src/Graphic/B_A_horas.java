@@ -163,7 +163,7 @@ public class B_A_horas {
     for(int iterador = 0; iterador < labores.size(); iterador++){
       total = total + labores.get(iterador).getTiempo_total();
       horas = Integer.parseInt(total.toString().subSequence(0, total.toString().indexOf(".")).toString());
-      minutos = Integer.parseInt(total.toString().subSequence(total.toString().indexOf(".")+1, total.toString().indexOf(".") + 3).toString());
+      minutos = Integer.parseInt(total.toString().subSequence(total.toString().indexOf(".")+1, total.toString().length()).toString());
 
       if (minutos > 59){
         minutos = minutos - 60;
