@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license <heade></heade>r, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -117,24 +118,15 @@ public class B_A_horas {
       st = conn.createStatement();
 
       ResultSet rs = st.executeQuery("SELECT * FROM LABOR WHERE CARNET_LABOR = '" + String.valueOf(carnet) + "';");
-      rs.next();
-      Hora hInicio = new Hora(rs.getString(1));
-      Hora hFin = new Hora(rs.getString(2));
-      B_A_horas labor = new B_A_horas(carnet, hFin,hInicio,rs.getString(4),rs.getString(3),rs.getDouble(6));
-      labores.add(labor);
-      if (rs.next()) {
-        labor = new B_A_horas(carnet, hFin,hInicio,rs.getString(4),rs.getString(3),rs.getDouble(6));
-        labores.add(labor);
-
+      
         while (rs.next()) {
-          hInicio = new Hora(rs.getString(1));
-          hFin = new Hora(rs.getString(2));
-          labor = new B_A_horas(carnet, hFin,hInicio,rs.getString(4),rs.getString(3),rs.getDouble(6));
+          Hora hInicio = new Hora(rs.getString(1));
+          Hora hFin = new Hora(rs.getString(2));
+          B_A_horas labor = new B_A_horas(carnet, hFin,hInicio,rs.getString(4),rs.getString(3),rs.getDouble(6));
           labores.add(labor);
         }
 
         rs.close();          
-      }                    
       conn.close();
 
     } catch (SQLException ex) {
@@ -154,25 +146,23 @@ public class B_A_horas {
   }
 
   //intefaz para la consulta de labores
-  public static String consultarTotalHoras(String carnet){
+  public static String consultarTotalHoras(String carnet) throws ParseException{
     ArrayList<B_A_horas> labores = (B_A_horas.consultarLabores(carnet));
-    Double total = 0.0;
-    Double auxiliar;
-    Integer horas;
-    Integer minutos;
+    long total = 0;
+    java.text.DateFormat df = new java.text.SimpleDateFormat("MM-DD-YYYY HH:mm");
     for(int iterador = 0; iterador < labores.size(); iterador++){
-      total = total + labores.get(iterador).getTiempo_total();
-      horas = Integer.parseInt(total.toString().subSequence(0, total.toString().indexOf(".")).toString());
-      minutos = Integer.parseInt(total.toString().subSequence(total.toString().indexOf(".")+1, total.toString().length()).toString());
-
-      if (minutos > 59){
-        minutos = minutos - 60;
-        auxiliar = Double.parseDouble("0."+ minutos.toString());
-        total = total  + auxiliar;
-      }
-
+      java.util.Date inicio = df.parse(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_inicio());
+      java.util.Date fin = df.parse(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_fin());
+      total = total + Math.abs(fin.getTime() - inicio.getTime());
+      System.out.println(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_inicio());
+      System.out.println(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_fin());
+      System.out.println(fin.getTime() - inicio.getTime());
+      System.out.println(total);
+      System.out.println("total labores: " + labores.size());
+      
     }   
-    return total.toString();
+    String retorno = String.valueOf((total/60000)/60) + ":" + String.valueOf((total/60000) % 60);
+    return retorno;
   }
 
 }

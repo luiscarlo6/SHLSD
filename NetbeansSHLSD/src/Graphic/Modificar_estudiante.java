@@ -298,12 +298,16 @@ public class Modificar_estudiante extends javax.swing.JFrame {
         Notificacion notificacion = new Notificacion(this,true, "Se logró modificar al estudiante");
         notificacion.setVisible(true);
         break;
-
+        
       } else {
         Notificacion notificacion = new Notificacion(this,true, "Intentelo nuevamente");
         notificacion.setVisible(true);
       }
     }
+    
+    Window ventana = new Window();
+    ventana.setVisible(true);            
+    this.setVisible(false);
 
   }//GEN-LAST:event_jButton2ActionPerformed
 

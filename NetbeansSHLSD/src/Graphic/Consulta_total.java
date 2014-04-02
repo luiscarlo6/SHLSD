@@ -6,6 +6,10 @@
 
 package Graphic;
 
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Jform que permite consultal el total de horas
  * @author johndelgado
@@ -93,8 +97,11 @@ public class Consulta_total extends javax.swing.JFrame {
 
         s_carnet2.setText(this.getEstudiante().getApellido());
 
-        s_carnet3.setText(B_A_horas.consultarTotalHoras((this.getEstudiante().getCarnet())));
-
+        try {
+                s_carnet3.setText(B_A_horas.consultarTotalHoras((this.getEstudiante().getCarnet())));
+        } catch (ParseException e) {
+                e.printStackTrace();
+        }
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
