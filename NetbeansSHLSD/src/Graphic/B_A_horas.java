@@ -88,7 +88,7 @@ public class B_A_horas {
   @Override
     //metodo para convertir una hora en un string
     public String toString() {
-      return "Carnet: " + carnet + ", hora fin: " + hora_fin.toString() + ", horainicio: " + hora_inicio.toString() + ", observaciones: " + observaciones + ", tiempo_total: " + tiempo_total + ", fecha: " + fecha ;
+      return "Carnet: " + carnet + ", hora inicio: " + hora_inicio.toString() + ", hora fin: " + hora_fin.toString() + ", tiempo_total: " + tiempo_total + ", fecha: " + fecha + ", observaciones: " + observaciones ;
     }
 
   //metodo que permite registrar una labor en la base de datos
@@ -135,6 +135,30 @@ public class B_A_horas {
     return labores;
 
   }
+  
+   public static B_A_horas consultarLabor(String carnet, String fecha, Hora hora_inicio){
+      B_A_horas labor = null;
+      try (Connection conn = Conexion.obtenerConn()) {
+         Statement st;
+         st = conn.createStatement();
+         String[] auxiliarFecha = fecha.trim().split("-");
+         fecha =auxiliarFecha[2]+"-"+auxiliarFecha[1]+"-"+auxiliarFecha[0];
+         ResultSet rs = st.executeQuery("SELECT * FROM LABOR WHERE CARNET_LABOR = '" + carnet + "' AND FECHA = '"+ fecha + "' AND HORA_INICIO = '"+ hora_inicio.getCadena() + "';");  
+         rs.next();
+         Hora hInicio = new Hora(rs.getString(1));
+         Hora hFin = new Hora(rs.getString(2));
+         labor = new B_A_horas(carnet, hFin,hInicio,rs.getString(4),rs.getString(3),rs.getDouble(6));
+       
+
+        rs.close();          
+        conn.close();
+
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    return labor;
+
+  }
 
   //interfaz para la consulta de labores
   public static String[] consultarLaboresStrings(String carnet){
@@ -154,15 +178,27 @@ public class B_A_horas {
       java.util.Date inicio = df.parse(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_inicio());
       java.util.Date fin = df.parse(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_fin());
       total = total + Math.abs(fin.getTime() - inicio.getTime());
-      System.out.println(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_inicio());
-      System.out.println(labores.get(iterador).getFecha() +" "+labores.get(iterador).getHora_fin());
-      System.out.println(fin.getTime() - inicio.getTime());
-      System.out.println(total);
-      System.out.println("total labores: " + labores.size());
-      
     }   
     String retorno = String.valueOf((total/60000)/60) + ":" + String.valueOf((total/60000) % 60);
     return retorno;
+  }
+  
+    //metodo que permite modificar una labor en la base de datos
+  public void modificarLabor() {
+    try (Connection conn = Conexion.obtenerConn()) {
+      Statement st;
+      st = conn.createStatement();
+              
+      st.executeUpdate("UPDATE LABOR SET OBSERVACION ='"
+          +this.observaciones+"' WHERE HORA_INICIO ='"
+          +this.hora_inicio +"'AND FECHA ='"+this.fecha+
+          "'AND CARNET_LABOR ='"+this.carnet + "';");
+      
+      st.close();
+      conn.close();
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
   }
 
 }

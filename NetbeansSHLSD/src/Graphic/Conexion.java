@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class Conexion {
 
   private static String url = "jdbc:postgresql://localhost:5432/SHLSD";

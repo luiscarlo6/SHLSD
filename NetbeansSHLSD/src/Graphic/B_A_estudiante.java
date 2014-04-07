@@ -162,5 +162,30 @@ public class B_A_estudiante {
     Pattern comp = Pattern.compile(patron);
     return carnet.matches(patron);
   }
+  
+  //metodo que retorna la cantidad de estudiante con el estado que se le pasa
+  @SuppressWarnings("ConvertToTryWithResources")
+  public static int[] contarEstudiantes(){
+      int[] cantidades = new int[3];
+      try (Connection conn = Conexion.obtenerConn()) {
+          Statement st;
+          st = conn.createStatement();
+          ResultSet rs = st.executeQuery("SELECT COUNT(carnet) FROM ESTUDIANTE WHERE ESTADO = 'ACTIVO';");
+          rs.next();
+          cantidades[0] = rs.getInt(1);
+          rs = st.executeQuery("SELECT COUNT(carnet) FROM ESTUDIANTE WHERE ESTADO = 'INACTIVO';");
+          rs.next();
+          cantidades[1] = rs.getInt(1);
+          rs = st.executeQuery("SELECT COUNT(carnet) FROM ESTUDIANTE;");
+          rs.next();
+          cantidades[2] =  rs.getInt(1);
+          conn.close();
+    } catch (SQLException ex) {
+          System.err.println(ex.getMessage());
+    }
+      
+      
+      return cantidades;
+  }
 
 }

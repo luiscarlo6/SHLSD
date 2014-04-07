@@ -28,8 +28,7 @@ class Hora {
   public Hora(String cadena){
     String literal1 = cadena.substring(0, cadena.indexOf(":"));
     String literal2 = cadena.substring(cadena.indexOf(":")+1, cadena.length());
-    System.out.println(literal1);
-    System.out.println(literal2);
+  
     if (cadena.contains(":")){
       this.cadena = cadena;
       this.hora = Integer.parseInt(literal1);

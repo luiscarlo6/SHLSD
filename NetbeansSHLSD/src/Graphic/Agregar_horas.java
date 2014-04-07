@@ -82,7 +82,7 @@ public class Agregar_horas extends javax.swing.JFrame {
 
         jLabel1.setText("Atención, las horas deben estar en formato militar!");
 
-        jLabel2.setText("MM-DD-AAAA");
+        jLabel2.setText("DD-MM-AAAA");
 
         jLabel3.setText("12-34567");
 
