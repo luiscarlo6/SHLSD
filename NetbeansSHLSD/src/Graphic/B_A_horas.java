@@ -201,4 +201,32 @@ public class B_A_horas {
     }
   }
 
+  public static String[] listarLaboresDeLista(ArrayList<String> carnets) throws ParseException{
+      String[] pares = new String[carnets.size()];
+      String carnet;
+      for (int iterador = 0; iterador < carnets.size(); iterador++) {
+          carnet = carnets.get(iterador);
+          pares[iterador] = (String) (carnet + "Acumulado: " + B_A_horas.consultarTotalHoras(carnet));
+      }
+      
+      return pares;
+  }
+  
+    public static int consultarCantidadLabores(String carnet){
+      int cantidad = 0;
+      try (Connection conn = Conexion.obtenerConn()) {
+         Statement st;
+         st = conn.createStatement();
+         ResultSet rs = st.executeQuery("SELECT count(*) FROM LABOR WHERE CARNET_LABOR = '" + carnet +"';");  
+         rs.next();
+         cantidad = rs.getInt(1);
+         rs.close();          
+         conn.close();
+
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    return cantidad;
+
+  }
 }

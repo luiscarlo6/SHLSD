@@ -37,6 +37,7 @@ public class Consultas extends javax.swing.JFrame {
         acumulado = new javax.swing.JButton();
         acreditaciones = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cantidad_acreditaciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +75,13 @@ public class Consultas extends javax.swing.JFrame {
 
         jLabel3.setText("12-34567");
 
+        cantidad_acreditaciones.setText("Cantidad de acretidaciones");
+        cantidad_acreditaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantidad_acreditacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,7 +105,8 @@ public class Consultas extends javax.swing.JFrame {
                                 .addGap(54, 54, 54)
                                 .addComponent(f_carne, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(jLabel3))))
+                                .addComponent(jLabel3))
+                            .addComponent(cantidad_acreditaciones)))
                     .addComponent(jButton1))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -116,7 +125,9 @@ public class Consultas extends javax.swing.JFrame {
                     .addComponent(datos)
                     .addComponent(acumulado)
                     .addComponent(acreditaciones))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cantidad_acreditaciones)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -187,6 +198,18 @@ public class Consultas extends javax.swing.JFrame {
 
   }//GEN-LAST:event_acreditacionesActionPerformed
 
+    private void cantidad_acreditacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantidad_acreditacionesActionPerformed
+        String carnet =f_carne.getText().toString();
+        if (B_A_estudiante.validaCarnet(carnet)) {
+              Consulta_cantidad_acreditaciones ventana = new Consulta_cantidad_acreditaciones(B_A_estudiante.consultarEstudiante(carnet));
+              ventana.setVisible(true);            
+              this.setVisible(false); 
+        } else {
+              Notificacion notificacion = new Notificacion(this,true,"Ingrese un carnet valido");
+              notificacion.setVisible(true);
+        }
+    }//GEN-LAST:event_cantidad_acreditacionesActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -225,6 +248,7 @@ public class Consultas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acreditaciones;
     private javax.swing.JButton acumulado;
+    private javax.swing.JButton cantidad_acreditaciones;
     private javax.swing.JButton datos;
     private javax.swing.JTextField f_carne;
     private javax.swing.JButton jButton1;

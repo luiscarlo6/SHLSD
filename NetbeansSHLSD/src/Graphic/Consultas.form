@@ -61,6 +61,7 @@
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="cantidad_acreditaciones" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jButton1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -86,7 +87,9 @@
                       <Component id="acumulado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="acreditaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="92" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="cantidad_acreditaciones" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -142,6 +145,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="12-34567"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="cantidad_acreditaciones">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cantidad de acretidaciones"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cantidad_acreditacionesActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

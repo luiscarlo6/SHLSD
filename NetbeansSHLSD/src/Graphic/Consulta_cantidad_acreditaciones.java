@@ -14,11 +14,12 @@ import java.util.logging.Logger;
  * Jform que permite consultal el total de horas
  * @author johndelgado
  */
-public class Consulta_total extends javax.swing.JFrame {
+public class Consulta_cantidad_acreditaciones extends javax.swing.JFrame {
+  private Integer carnet;
   private B_A_estudiante estudiante;
 
   //constructor de la clase
-  public Consulta_total(B_A_estudiante estudiante) {
+  public Consulta_cantidad_acreditaciones(B_A_estudiante estudiante) {
     this.estudiante = estudiante;
     initComponents();
   }
@@ -32,11 +33,24 @@ public class Consulta_total extends javax.swing.JFrame {
     this.estudiante = estudiante;
   }
 
+  public Integer getCarnet() {
+    return carnet;
+  }
+
+  public void setCarnet(Integer carnet) {
+    this.carnet = carnet;
+  }
+
   //constructor de la clase
-  public Consulta_total() {
+  public Consulta_cantidad_acreditaciones() {
     initComponents();
   }
 
+  //constructor de la clase
+  public Consulta_cantidad_acreditaciones(Integer carnet_entrada) {
+    carnet = carnet_entrada;
+    initComponents();
+  }
 
   /**
    * This method is called from within the constructor to initialize the form.
@@ -67,7 +81,7 @@ public class Consulta_total extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Consultar el total de horas de un estudiante");
+        jLabel1.setText("Consultar el número de acreditaciones de un estudiante");
 
         jLabel2.setText("Carnet");
 
@@ -75,7 +89,7 @@ public class Consulta_total extends javax.swing.JFrame {
 
         jLabel4.setText("Apellidos");
 
-        jLabel5.setText("Cantidad acumulada");
+        jLabel5.setText("Cantidad de acreditaciones");
 
         s_carnet.setText(this.getEstudiante().getNombre().toString());
 
@@ -83,11 +97,8 @@ public class Consulta_total extends javax.swing.JFrame {
 
         s_carnet2.setText(this.getEstudiante().getApellido());
 
-        try {
-                s_carnet3.setText(B_A_horas.consultarTotalHoras((this.getEstudiante().getCarnet())));
-        } catch (ParseException e) {
-                e.printStackTrace();
-        }
+        s_carnet3.setText(String.valueOf(B_A_horas.consultarCantidadLabores(this.estudiante.getCarnet())) );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +108,7 @@ public class Consulta_total extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addComponent(s_carnet3)
                         .addGap(85, 85, 85))
                     .addGroup(layout.createSequentialGroup()
@@ -170,19 +181,19 @@ public class Consulta_total extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(Consulta_total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Consulta_cantidad_acreditaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(Consulta_total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Consulta_cantidad_acreditaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(Consulta_total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Consulta_cantidad_acreditaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(Consulta_total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(Consulta_cantidad_acreditaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
     //</editor-fold>        
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {    
-        new Consulta_total().setVisible(true);
+        new Consulta_cantidad_acreditaciones().setVisible(true);
       }
 
     });

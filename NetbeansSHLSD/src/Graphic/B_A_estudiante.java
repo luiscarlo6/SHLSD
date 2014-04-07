@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 /**
@@ -184,8 +185,26 @@ public class B_A_estudiante {
           System.err.println(ex.getMessage());
     }
       
-      
       return cantidades;
   }
 
+  //metodo que permite obtener los carnets de la base de datos
+  public static ArrayList<String> listarEstudiantes(){
+    ArrayList<String> carnets = new ArrayList();
+    try (Connection conn = Conexion.obtenerConn()) {
+      Statement st;
+      st = conn.createStatement();
+        try (ResultSet rs = st.executeQuery("SELECT CARNET FROM ESTUDIANTE;")) {
+            while(rs.next()) {
+                carnets.add(rs.getString(1));
+            }
+            
+            conn.close();
+        }
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    return carnets;
+  }
+  
 }
