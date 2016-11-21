@@ -200,6 +200,23 @@ public class B_A_horas {
       System.err.println(ex.getMessage());
     }
   }
+  
+  //metodo que permite eliminar una labor en la base de datos
+  public void eliminarLabor() {
+    try (Connection conn = Conexion.obtenerConn()) {
+      Statement st;
+      st = conn.createStatement();
+              
+      st.executeUpdate("DELETE FROM LABOR WHERE HORA_INICIO ='"
+          +this.hora_inicio +"'AND FECHA ='"+this.fecha+
+          "'AND CARNET_LABOR ='"+this.carnet + "';");
+      
+      st.close();
+      conn.close();
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+  }
 
   public static String[] listarLaboresDeLista(ArrayList<String> carnets) throws ParseException{
       String[] pares = new String[carnets.size()];
