@@ -29,7 +29,7 @@ public class Consultas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        Consultas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         f_carne = new javax.swing.JTextField();
@@ -41,10 +41,10 @@ public class Consultas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Consultas.setText("Regresar");
+        Consultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ConsultasActionPerformed(evt);
             }
         });
 
@@ -107,8 +107,8 @@ public class Consultas extends javax.swing.JFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(jLabel3))
                             .addComponent(cantidad_acreditaciones)))
-                    .addComponent(jButton1))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(Consultas))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,7 +128,7 @@ public class Consultas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cantidad_acreditaciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(Consultas)
                 .addContainerGap())
         );
 
@@ -147,11 +147,11 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   //boton regresar
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void ConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultasActionPerformed
     Window ventana = new Window();
     ventana.setVisible(true);            
     this.setVisible(false);
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }//GEN-LAST:event_ConsultasActionPerformed
 
   //boton para obtener los datos de un estudiante
   private void datosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datosActionPerformed
@@ -246,12 +246,12 @@ public class Consultas extends javax.swing.JFrame {
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Consultas;
     private javax.swing.JButton acreditaciones;
     private javax.swing.JButton acumulado;
     private javax.swing.JButton cantidad_acreditaciones;
     private javax.swing.JButton datos;
     private javax.swing.JTextField f_carne;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

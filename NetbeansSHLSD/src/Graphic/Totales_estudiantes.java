@@ -10,14 +10,13 @@ package Graphic;
  * Jform que permite notificar.
  * @author johndelgado
  */
-public class Totales_estudiantes extends javax.swing.JDialog {
+public class Totales_estudiantes extends javax.swing.JFrame {
     
     
     /**
      * Creates new form validar_carnet
      */
     public Totales_estudiantes(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
     }
 
@@ -44,6 +43,10 @@ public class Totales_estudiantes extends javax.swing.JDialog {
         activos = new javax.swing.JLabel();
         inactivos = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        VerAcreditaciones = new javax.swing.JButton();
+        ModificarEstudiante = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -86,14 +89,14 @@ public class Totales_estudiantes extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("OK");
+        jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Totales de Estudiantes");
+        jLabel2.setText("Estudiantes");
 
         jLabel3.setText("ACTIVOS:");
 
@@ -107,6 +110,28 @@ public class Totales_estudiantes extends javax.swing.JDialog {
 
         total.setText(String.valueOf((B_A_estudiante.contarEstudiantes())[2]));
 
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = B_A_estudiante.consultarEstudiantesStrings();
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        VerAcreditaciones.setText("Ver Acrecitaciones");
+        VerAcreditaciones.setActionCommand("Ver Acreditaciones");
+        VerAcreditaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerAcreditacionesActionPerformed(evt);
+            }
+        });
+
+        ModificarEstudiante.setText("Mofidicar");
+        ModificarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarEstudianteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,26 +139,41 @@ public class Totales_estudiantes extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(69, 69, 69)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(total)
-                            .addComponent(inactivos)
-                            .addComponent(activos))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                            .addComponent(jButton1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(69, 69, 69)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(total)
+                                    .addComponent(inactivos)
+                                    .addComponent(activos))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ModificarEstudiante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(VerAcreditaciones)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VerAcreditaciones)
+                    .addComponent(ModificarEstudiante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(activos))
@@ -153,8 +193,38 @@ public class Totales_estudiantes extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           this.setVisible(false);
+        Window ventana = new Window();
+        ventana.setVisible(true);   
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarEstudianteActionPerformed
+        int[] indices = jList1.getSelectedIndices();
+        if (indices.length != 1) {
+            Notificacion notificacion = new Notificacion(this,true, "Por favor seleccione solo un estudiante");
+            notificacion.setVisible(true);
+            return;
+        }
+        Object[] estudiantes =  (B_A_estudiante.consultarEstudiantes().toArray());
+        B_A_estudiante registro = (B_A_estudiante) estudiantes[indices[0]];
+        Modificar_estudiante ventana = new Modificar_estudiante(registro);
+        ventana.setVisible(true);            
+        this.setVisible(false);
+    }//GEN-LAST:event_ModificarEstudianteActionPerformed
+
+    private void VerAcreditacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerAcreditacionesActionPerformed
+        int[] indices = jList1.getSelectedIndices();
+        if (indices.length != 1) {
+            Notificacion notificacion = new Notificacion(this,true, "Por favor seleccione solo una acreditación");
+            notificacion.setVisible(true);
+            return;
+        }
+        Object[] estudiantes =  (B_A_estudiante.consultarEstudiantes().toArray());
+        B_A_estudiante registro = (B_A_estudiante) estudiantes[indices[0]];
+        Consulta_acreditaciones ventana = new Consulta_acreditaciones(registro);
+        ventana.setVisible(true);            
+        this.setVisible(false);
+    }//GEN-LAST:event_VerAcreditacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +269,8 @@ public class Totales_estudiantes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ModificarEstudiante;
+    private javax.swing.JButton VerAcreditaciones;
     private javax.swing.JLabel activos;
     private javax.swing.JLabel inactivos;
     private javax.swing.JButton jButton1;
@@ -209,6 +281,8 @@ public class Totales_estudiantes extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;

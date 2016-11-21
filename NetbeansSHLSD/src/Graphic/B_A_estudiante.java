@@ -34,6 +34,13 @@ public class B_A_estudiante {
     this.celular = celular;
     this.carnet = carnet;
   }
+  
+  public B_A_estudiante(String nombre, String apellido, String estado, String carnet) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.estado = estado;
+    this.carnet = carnet;
+  }
 
   //Getters & setters
   public String getNombre() {
@@ -95,7 +102,7 @@ public class B_A_estudiante {
   @Override
     //metodo para convertir un estudiante en una cadena de caracteres
     public String toString() {
-      return "B_A_estudiante{" + "nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", email=" + email + ", estado=" + estado + ", celular=" + celular + ", carnet=" + carnet + "}'";
+      return carnet + " " + nombre + " " + apellido + ", " + estado;
     }
 
   //metodo que permite registrar estudiante en la base de datos
@@ -187,7 +194,47 @@ public class B_A_estudiante {
       
       return cantidades;
   }
+  
+  //interfaz para la consulta de labores
+  public static String[] consultarEstudiantesStrings(){
+    Object[] estudiantes = (B_A_estudiante.consultarEstudiantes().toArray());
+    String[] cadenas = new String[estudiantes.length];
+    for(int iterador = 0; iterador < estudiantes.length; iterador++)
+      cadenas[iterador] = ((String)estudiantes[iterador].toString());
+    return cadenas;
+  }
+  
+    //metodo que permite consultar todas las labores asociadas a un estudiante
+  public static ArrayList<B_A_estudiante> consultarEstudiantes(){
+    ArrayList<B_A_estudiante> estudiantes = new ArrayList<>();
+    try (Connection conn = Conexion.obtenerConn()) {
+      Statement st;
+      st = conn.createStatement();
 
+      ResultSet rs = st.executeQuery("SELECT * FROM ESTUDIANTE ORDER BY CARNET;");
+      
+        while (rs.next()) {
+            String nombre = rs.getString(1);
+            String apellido = rs.getString(2);
+            String carnet = rs.getString(3);
+            String direccion = rs.getString(4);
+            String email = rs.getString(5);
+            String estado = rs.getString(6);
+            String celular = rs.getString(7);
+            B_A_estudiante estudiante = new B_A_estudiante(nombre, apellido,carnet,direccion, email, estado, celular);
+            estudiantes.add(estudiante);
+        }
+
+        rs.close();          
+      conn.close();
+
+    } catch (SQLException ex) {
+      System.err.println(ex.getMessage());
+    }
+    return estudiantes;
+
+  }
+  
   //metodo que permite obtener los carnets de la base de datos
   public static ArrayList<String> listarEstudiantes(){
     ArrayList<String> carnets = new ArrayList();

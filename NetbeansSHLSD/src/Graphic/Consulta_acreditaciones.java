@@ -58,7 +58,7 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        EliminarLabor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,6 +69,7 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
         s_carnet2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        ModificarLabor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,10 +80,10 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        EliminarLabor.setText("Eliminar");
+        EliminarLabor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarLaborActionPerformed(evt);
             }
         });
 
@@ -109,6 +110,13 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
+        ModificarLabor.setText("Modificar");
+        ModificarLabor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarLaborActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,10 +126,12 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton3)
-                        .addGap(19, 19, 19))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 829, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ModificarLabor)
+                            .addComponent(EliminarLabor))
+                        .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -162,9 +172,13 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ModificarLabor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(EliminarLabor)
+                        .addGap(0, 186, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1))
         );
 
@@ -178,18 +192,37 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
     this.setVisible(false);
   }//GEN-LAST:event_jButton1ActionPerformed
   //boton eliminar
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarLaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarLaborActionPerformed
         int[] indices = jList1.getSelectedIndices();
+        if (indices.length < 1) {
+            Notificacion notificacion = new Notificacion(this,true, "Por favor seleccione una o varias acreditaciones");
+            notificacion.setVisible(true);
+            return;
+        }
         Object[] labores =  (B_A_horas.consultarLabores(estudiante.getCarnet()).toArray());
         for (int iterador = 0; iterador < indices.length; iterador++) {
-            B_A_horas registro = (B_A_horas) labores[iterador];
+            B_A_horas registro = (B_A_horas) labores[indices[iterador]];
             registro.eliminarLabor();
         }
         String carnet = estudiante.getCarnet().toString();
         Consulta_acreditaciones ventana = new Consulta_acreditaciones(B_A_estudiante.consultarEstudiante(carnet));
         ventana.setVisible(true);            
         this.setVisible(false);         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EliminarLaborActionPerformed
+
+    private void ModificarLaborActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarLaborActionPerformed
+        int[] indices = jList1.getSelectedIndices();
+        if (indices.length != 1) {
+            Notificacion notificacion = new Notificacion(this,true, "Por favor seleccione solo una acreditación");
+            notificacion.setVisible(true);
+            return;
+        }
+        Object[] labores =  (B_A_horas.consultarLabores(estudiante.getCarnet()).toArray());
+        B_A_horas registro = (B_A_horas) labores[indices[0]];
+        Modificar_observaciones ventana = new Modificar_observaciones(registro);
+        ventana.setVisible(true);            
+        this.setVisible(false);
+    }//GEN-LAST:event_ModificarLaborActionPerformed
 
   /**
    * @param args the command line arguments
@@ -227,8 +260,9 @@ public class Consulta_acreditaciones extends javax.swing.JFrame {
   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EliminarLabor;
+    private javax.swing.JButton ModificarLabor;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

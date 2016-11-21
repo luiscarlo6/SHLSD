@@ -184,18 +184,22 @@ public class B_A_horas {
   }
   
     //metodo que permite modificar una labor en la base de datos
-  public void modificarLabor() {
+  public void modificarLabor(String new_carnet, String new_fecha, String new_observaciones) {
     try (Connection conn = Conexion.obtenerConn()) {
-      Statement st;
-      st = conn.createStatement();
-              
-      st.executeUpdate("UPDATE LABOR SET OBSERVACION ='"
-          +this.observaciones+"' WHERE HORA_INICIO ='"
-          +this.hora_inicio +"'AND FECHA ='"+this.fecha+
-          "'AND CARNET_LABOR ='"+this.carnet + "';");
-      
-      st.close();
-      conn.close();
+        Statement st;
+        st = conn.createStatement();
+        st.executeUpdate(
+        "UPDATE LABOR SET "
+            + "OBSERVACION ='"+new_observaciones+"',"
+            + "FECHA ='"+new_fecha+"',"
+            + "CARNET_LABOR ='"+new_carnet+"'"
+        + " WHERE"
+            + " HORA_INICIO ='"+this.hora_inicio +"' AND"
+            + " FECHA ='"+this.fecha+"' AND"
+            + " CARNET_LABOR ='"+this.carnet + "';");
+        
+        st.close();
+        conn.close();
     } catch (SQLException ex) {
       System.err.println(ex.getMessage());
     }

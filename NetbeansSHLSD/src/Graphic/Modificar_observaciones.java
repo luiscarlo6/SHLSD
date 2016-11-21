@@ -52,13 +52,13 @@ public class Modificar_observaciones extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        carnet = new javax.swing.JLabel();
-        fecha = new javax.swing.JLabel();
         inicio = new javax.swing.JLabel();
         fin = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
         observaciones = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        carnet = new javax.swing.JTextField();
+        fecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,10 +83,6 @@ public class Modificar_observaciones extends javax.swing.JFrame {
             }
         });
 
-        carnet.setText(labor.getCarnet().toString());
-
-        fecha.setText(labor.getFecha());
-
         inicio.setText(labor.getHora_inicio().getCadena());
 
         fin.setText(labor.getHora_fin().getCadena());
@@ -104,6 +100,20 @@ public class Modificar_observaciones extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        carnet.setText(labor.getCarnet());
+        carnet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carnetActionPerformed(evt);
+            }
+        });
+
+        fecha.setText(labor.getFecha());
+        fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fechaActionPerformed(evt);
             }
         });
 
@@ -126,11 +136,14 @@ public class Modificar_observaciones extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(carnet)
-                            .addComponent(fecha)
-                            .addComponent(inicio)
-                            .addComponent(fin)
-                            .addComponent(total)
-                            .addComponent(observaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(inicio)
+                                    .addComponent(fin)
+                                    .addComponent(total)
+                                    .addComponent(observaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                    .addComponent(fecha))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(107, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -145,11 +158,11 @@ public class Modificar_observaciones extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(carnet))
+                    .addComponent(carnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(fecha))
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -186,14 +199,57 @@ public class Modificar_observaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_observacionesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.labor.setObservaciones(observaciones.getText().toString());
-        this.labor.modificarLabor();
+        String new_carnet = carnet.getText();
+        String new_fecha = fecha.getText();
+        String new_observaciones = observaciones.getText();
+        Hora new_inicio = new Hora(inicio.getText().trim());
+        Hora new_fin = new Hora(fin.getText().trim());
+        
+        if (!Hora.validarFormatoFecha(new_fecha)){
+            Notificacion notificacion = new Notificacion(this,true, "Ingrese la fecha en el formato indicado");
+            notificacion.setVisible(true);
+            return;
+        }
+        
+        if (!Hora.validarFormato(new_inicio.getCadena())){
+            Notificacion notificacion = new Notificacion(this,true, "Ingrese una hora de inicio en formato militar");
+            notificacion.setVisible(true);
+            return;
+        }
+        
+        if (!Hora.validarFormato(new_fin.getCadena())){
+            Notificacion notificacion = new Notificacion(this,true, "Ingrese una hora de fin en formato militar");
+            notificacion.setVisible(true);
+            return;
+        }
+        
+        if (B_A_estudiante.validaCarnet(new_carnet)){
+            if (null == B_A_estudiante.consultarEstudiante(new_carnet)){
+                 Notificacion notificacion = new Notificacion(this,true, "Ese estudiante no existe");
+                 notificacion.setVisible(true);
+                 return;
+            }
+        } else {
+            Notificacion notificacion = new Notificacion(this,true, "Ingrese un carnet valido");
+            notificacion.setVisible(true);
+            return;
+        }
+        
+        this.labor.modificarLabor(new_carnet, new_fecha, new_observaciones);
         Notificacion notificacion = new Notificacion(this,true, "Las observaciones fueron actualizadas");
         notificacion.setVisible(true);
         Window ventana = new Window();
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void carnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carnetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_carnetActionPerformed
+
+    private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fechaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,8 +287,8 @@ public class Modificar_observaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel carnet;
-    private javax.swing.JLabel fecha;
+    private javax.swing.JTextField carnet;
+    private javax.swing.JTextField fecha;
     private javax.swing.JLabel fin;
     private javax.swing.JLabel inicio;
     private javax.swing.JButton jButton1;
