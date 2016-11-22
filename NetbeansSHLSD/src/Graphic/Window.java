@@ -84,7 +84,7 @@ public class Window extends javax.swing.JFrame {
 
         jLabel3.setText("Menu principal");
 
-        jLabel4.setText("V 1.1");
+        jLabel4.setText("V 1.3");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visual/principal.jpg"))); // NOI18N
 
